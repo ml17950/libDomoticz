@@ -3,7 +3,7 @@
 
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <arduino_base64.hpp>
+#include <base64.h>
 
 class Domoticz {
   public:

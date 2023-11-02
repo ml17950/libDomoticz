@@ -274,14 +274,12 @@ void Domoticz::updateOnOffAction(int id, const char* on_action, const char* off_
   
   sprintf(tmpbuf, "http://%u.%u.%u.%u/%s", ip[0], ip[1], ip[2], ip[3], on_action);
   size_t onbuf_length = sizeof(tmpbuf);
-  char onbuf[base64::encodeLength(onbuf_length)];
-  base64::encode((const uint8_t*)tmpbuf, onbuf_length, onbuf);
+  String onbuf = base64::encode((uint8_t *)tmpbuf, onbuf_length, false);
 
   sprintf(tmpbuf, "http://%u.%u.%u.%u/%s", ip[0], ip[1], ip[2], ip[3], off_action);
   size_t ofbuf_length = strlen(tmpbuf);
-  char ofbuf[base64::encodeLength(ofbuf_length)];
-  base64::encode((const uint8_t*)tmpbuf, ofbuf_length, ofbuf);
+  String ofbuf = base64::encode((uint8_t *)tmpbuf, ofbuf_length, false);
 
-  sprintf(urlbuf, "%sjson.htm?type=setused&used=true&idx=%d&strparam1=%s&strparam2=%s", this->DOMOTICZ_CONTROLLER_URL, id, onbuf, ofbuf);
+  sprintf(urlbuf, "%sjson.htm?type=setused&used=true&idx=%d&strparam1=%s&strparam2=%s", this->DOMOTICZ_CONTROLLER_URL, id, onbuf.c_str(), ofbuf.c_str());
   this->sendApiGet(urlbuf);
 }
