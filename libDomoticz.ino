@@ -1,5 +1,5 @@
 #define SKETCH_NAME __FILE__
-#define SKETCH_VERS "22.01.15"
+#define SKETCH_VERS "23.11.02"
 
 #include "libDomoticz.h"
 #include "libDomoticz.h"
@@ -9,16 +9,29 @@
 
 #define DOMOTICZ_URL    "http://ip.of.domoticz.host:1080/"
 
-Domoticz domo(DOMOTICZ_URL);
+Domoticz domo;
 
 void setup() {
   // init serial
   Serial.begin(115200);
   Serial.setDebugOutput(false);
-  delay(10);
+  delay(500);
   Serial.printf("\n\n%s / version %s\n\n", SKETCH_NAME, SKETCH_VERS);
-  
+
   initWiFi();
+
+  domo.setControllerUrl(DOMOTICZ_URL);
+  domo.debugOn();
+
+  domo.updateOnOffAction(12, "on", "off");
+
+  if (1 == 0) {
+    domo.uservarUpdate("lib-test-vari", "eins");
+    delay(5000);
+    domo.uservarUpdate("lib-test-vari", "zwei");
+    delay(5000);
+    domo.uservarUpdate("lib-test-vari", 123);
+  }
 
   Serial.println("setup ready");
 }
@@ -73,6 +86,8 @@ void loop() {
 }
 
 void initWiFi() {
+  Serial.print("Connecting to WiFi ...... ");
+
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
   while(WiFi.status() != WL_CONNECTED){

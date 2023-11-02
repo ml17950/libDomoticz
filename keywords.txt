@@ -1,11 +1,45 @@
 #######################################
-# Datatypes (KEYWORD1)
+# Datatypes 
 #######################################
 
-Domoticz	  KEYWORD1
+Domoticz					KEYWORD1
 
 #######################################
-# Methods and Functions (KEYWORD2)
+# Methods and Functions 
 #######################################
 
-getVersion		KEYWORD2
+getVersion					KEYWORD2
+debugOn						KEYWORD2
+debugOff					KEYWORD2
+setControllerUrl			KEYWORD2
+setRssiLevel				KEYWORD2
+setBatteryLevel				KEYWORD2
+sendApiGet					KEYWORD2
+switchOn					KEYWORD2
+switchOff					KEYWORD2
+switchToggle				KEYWORD2
+switchStop					KEYWORD2
+switchSetOn					KEYWORD2
+switchSetOff				KEYWORD2
+groupOn						KEYWORD2
+groupOff					KEYWORD2
+groupToggle					KEYWORD2
+sceneOn						KEYWORD2
+sensorTemperature			KEYWORD2
+sensorHumidity				KEYWORD2
+sensorTemperatureHumidity	KEYWORD2
+sensorPercentage			KEYWORD2
+sensorLux					KEYWORD2
+sensorVoltage				KEYWORD2
+sensorDistance				KEYWORD2
+sensorCustom				KEYWORD2
+sensorText					KEYWORD2
+uservarCreate				KEYWORD2
+uservarCreate				KEYWORD2
+uservarCreate				KEYWORD2
+uservarUpdate				KEYWORD2
+uservarUpdate				KEYWORD2
+uservarUpdate				KEYWORD2
+uservarDelete				KEYWORD2
+triggerEvent				KEYWORD2
+updateOnOffAction			KEYWORD2

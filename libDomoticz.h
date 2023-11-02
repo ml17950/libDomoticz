@@ -3,13 +3,18 @@
 
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <arduino_base64.hpp>
 
 class Domoticz {
   public:
-    Domoticz(const char* url);
+    Domoticz();
 
     const char*   getVersion();
 
+    void          debugOn();
+    void          debugOff();
+
+    void          setControllerUrl(const char* url);
     void          setRssiLevel(int percent);
     void          setBatteryLevel(int percent);
 
@@ -19,6 +24,8 @@ class Domoticz {
     void          switchOff(int id);
     void          switchToggle(int id);
     void          switchStop(int id);
+    void          switchSetOn(int id);
+    void          switchSetOff(int id);
 
     void          groupOn(int id);
     void          groupOff(int id);
@@ -38,17 +45,24 @@ class Domoticz {
     void          uservarCreate(const char* name, int val);
     void          uservarCreate(const char* name, float val);
     void          uservarCreate(const char* name, const char* val);
-    
+
     void          uservarUpdate(const char* name, int val);
     void          uservarUpdate(const char* name, float val);
     void          uservarUpdate(const char* name, const char* val);
     
     void          uservarDelete(int id);
 
+    void          triggerEvent(const char* name, const char* data);
+
+    void          updateOnOffAction(int id, const char* on_action, const char* off_action);
+
   private:
-    const char*   DOMOTICZ_URL;
+    bool          DEBUG_ON;
+    const char*   DOMOTICZ_CONTROLLER_URL;
     int           RSSI_LEVEL;
     int           BATTERY_LEVEL;
+    int           LAST_RESPONSE_CODE;
+    String        LAST_RESPONSE_DATA;
 };
 
 #endif
